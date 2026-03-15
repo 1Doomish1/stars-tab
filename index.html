@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,11 +25,11 @@ html, body {
 /* individual stars */
 .star {
     position: absolute;
-    width: 0.5px;
-    height: 0.5px;
-    background: #606784;
+    width: 1px;             /* minimum star size */
+    height: 1px;
+    background: #ffffff;    /* brighter for crispness */
     border-radius: 50%;
-    filter: blur(1px);
+    box-shadow: 0 0 1px #ffffff; /* subtle twinkle effect */
 }
 
 @keyframes drift {
@@ -71,10 +70,7 @@ html, body {
 </div>
 
 <script>
-
 const starContainer = document.getElementById("stars")
-
-/* 2x more stars */
 const starCount = 5800
 
 for (let i = 0; i < starCount; i++) {
@@ -82,18 +78,23 @@ for (let i = 0; i < starCount; i++) {
     const star = document.createElement("div")
     star.className = "star"
 
+    // random position
     star.style.left = Math.random() * 100 + "%"
     star.style.top = Math.random() * 200 + "%"
 
+    // random size for variation (1px–3px)
     const size = Math.random() * 2 + 1
     star.style.width = size + "px"
     star.style.height = size + "px"
 
+    // optional: subtle color variation
+    const shade = Math.floor(Math.random() * 100) + 155 // 155–255
+    star.style.background = `rgb(${shade},${shade},${shade})`
+    star.style.boxShadow = `0 0 1px rgb(${shade},${shade},${shade})`
+
     starContainer.appendChild(star)
 }
-
 </script>
 
 </body>
 </html>
-```
