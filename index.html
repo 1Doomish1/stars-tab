@@ -9,7 +9,7 @@
 html, body {
     margin: 0;
     height: 100%;
-    background: #020412;
+    background: #020412; /* dark night sky */
     overflow: hidden;
     font-family: Arial, sans-serif;
 }
@@ -26,8 +26,7 @@ html, body {
 .star {
     position: absolute;
     border-radius: 50%;
-    background: #ffffff;
-    box-shadow: 0 0 1px #ffffff;
+    box-shadow: 0 0 1px white;
     animation: twinkle 2s infinite alternate;
 }
 
@@ -77,6 +76,16 @@ html, body {
 const starContainer = document.getElementById("stars");
 const starCount = 5800;
 
+// array of colors for variation (soft whites, purples, and bluish tones)
+const starColors = [
+    "#ffffff", // white
+    "#f0e6ff", // soft lavender
+    "#dcd0ff", // pale purple
+    "#e8e0ff", // very soft violet
+    "#cbbfff", // light purple
+    "#e5e5ff", // pale blue-white
+];
+
 for (let i = 0; i < starCount; i++) {
     const star = document.createElement("div");
     star.className = "star";
@@ -85,17 +94,17 @@ for (let i = 0; i < starCount; i++) {
     star.style.left = Math.random() * 100 + "%";
     star.style.top = Math.random() * 200 + "%";
 
-    // random size (1px–3px) for crisp but visible stars
+    // random size (1px–3px)
     const size = Math.random() * 2 + 1;
     star.style.width = size + "px";
     star.style.height = size + "px";
 
-    // subtle color variation for realism
-    const shade = Math.floor(Math.random() * 100) + 155; // 155–255
-    star.style.background = `rgb(${shade},${shade},${shade})`;
-    star.style.boxShadow = `0 0 1px rgb(${shade},${shade},${shade})`;
+    // pick a random color from the array
+    const color = starColors[Math.floor(Math.random() * starColors.length)];
+    star.style.background = color;
+    star.style.boxShadow = `0 0 1px ${color}`;
 
-    // random twinkle duration and delay for natural flicker
+    // random twinkle duration and delay
     star.style.animationDuration = (Math.random() * 1.5 + 1) + "s";
     star.style.animationDelay = Math.random() * 2 + "s";
 
