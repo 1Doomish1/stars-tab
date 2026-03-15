@@ -25,16 +25,20 @@ html, body {
 /* individual stars */
 .star {
     position: absolute;
-    width: 1px;             /* minimum star size */
-    height: 1px;
-    background: #ffffff;    /* brighter for crispness */
     border-radius: 50%;
-    box-shadow: 0 0 1px #ffffff; /* subtle twinkle effect */
+    background: #ffffff;
+    box-shadow: 0 0 1px #ffffff;
+    animation: twinkle 2s infinite alternate;
 }
 
 @keyframes drift {
     from { transform: translateY(-50%); }
     to { transform: translateY(0%); }
+}
+
+@keyframes twinkle {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
 }
 
 /* centered search */
@@ -70,29 +74,32 @@ html, body {
 </div>
 
 <script>
-const starContainer = document.getElementById("stars")
-const starCount = 5800
+const starContainer = document.getElementById("stars");
+const starCount = 5800;
 
 for (let i = 0; i < starCount; i++) {
-
-    const star = document.createElement("div")
-    star.className = "star"
+    const star = document.createElement("div");
+    star.className = "star";
 
     // random position
-    star.style.left = Math.random() * 100 + "%"
-    star.style.top = Math.random() * 200 + "%"
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 200 + "%";
 
-    // random size for variation (1px–3px)
-    const size = Math.random() * 2 + 1
-    star.style.width = size + "px"
-    star.style.height = size + "px"
+    // random size (1px–3px) for crisp but visible stars
+    const size = Math.random() * 2 + 1;
+    star.style.width = size + "px";
+    star.style.height = size + "px";
 
-    // optional: subtle color variation
-    const shade = Math.floor(Math.random() * 100) + 155 // 155–255
-    star.style.background = `rgb(${shade},${shade},${shade})`
-    star.style.boxShadow = `0 0 1px rgb(${shade},${shade},${shade})`
+    // subtle color variation for realism
+    const shade = Math.floor(Math.random() * 100) + 155; // 155–255
+    star.style.background = `rgb(${shade},${shade},${shade})`;
+    star.style.boxShadow = `0 0 1px rgb(${shade},${shade},${shade})`;
 
-    starContainer.appendChild(star)
+    // random twinkle duration and delay for natural flicker
+    star.style.animationDuration = (Math.random() * 1.5 + 1) + "s";
+    star.style.animationDelay = Math.random() * 2 + "s";
+
+    starContainer.appendChild(star);
 }
 </script>
 
