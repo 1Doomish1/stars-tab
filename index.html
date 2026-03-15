@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,10 +6,11 @@
 <title>New Tab</title>
 
 <style>
+
 html, body {
     margin: 0;
     height: 100%;
-    background: #020412; /* dark night sky */
+    background: #020412;
     overflow: hidden;
     font-family: Arial, sans-serif;
 }
@@ -24,7 +26,11 @@ html, body {
 /* individual stars */
 .star {
     position: absolute;
-    border-radius: 50%; /* perfectly round dots */
+    width: 0.5px;
+    height: 0.5px;
+    background: #2e1f4f;
+    border-radius: 50%;
+    filter: blur(1px);
 }
 
 @keyframes drift {
@@ -50,10 +56,12 @@ html, body {
     font-size: 16px;
     background: rgba(255,255,255,0.9);
 }
+
 </style>
 </head>
 
 <body>
+
 <div id="stars"></div>
 
 <div class="center">
@@ -63,38 +71,29 @@ html, body {
 </div>
 
 <script>
-const starContainer = document.getElementById("stars");
-const starCount = 5800;
 
-// mostly violet/purple shades (no glow)
-const starColors = [
-    "#b99fff", 
-    "#a67fff", 
-    "#8a5fff", 
-    "#7a3fff", 
-    "#9c7aff", 
-    "#c1a3ff",
-];
+const starContainer = document.getElementById("stars")
+
+/* 2x more stars */
+const starCount = 5800
 
 for (let i = 0; i < starCount; i++) {
-    const star = document.createElement("div");
-    star.className = "star";
 
-    // random position
-    star.style.left = Math.random() * 100 + "%";
-    star.style.top = Math.random() * 200 + "%";
+    const star = document.createElement("div")
+    star.className = "star"
 
-    // small, crisp size (1px–2px)
-    const size = Math.random() * 1 + 1;
-    star.style.width = size + "px";
-    star.style.height = size + "px";
+    star.style.left = Math.random() * 100 + "%"
+    star.style.top = Math.random() * 200 + "%"
 
-    // pick color
-    const color = starColors[Math.floor(Math.random() * starColors.length)];
-    star.style.background = color;
+    const size = Math.random() * 2 + 1
+    star.style.width = size + "px"
+    star.style.height = size + "px"
 
-    starContainer.appendChild(star);
+    starContainer.appendChild(star)
 }
+
 </script>
+
 </body>
 </html>
+```
