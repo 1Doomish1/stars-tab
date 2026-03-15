@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,7 @@
 <title>New Tab</title>
 
 <style>
+
 html, body {
     margin: 0;
     height: 100%;
@@ -24,18 +26,16 @@ html, body {
 /* individual stars */
 .star {
     position: absolute;
+    width: 0.5px;
+    height: 0.5px;
+    background: #606784;
     border-radius: 50%;
-    animation: twinkle 2s infinite alternate;
+    filter: blur(1px);
 }
 
 @keyframes drift {
     from { transform: translateY(-50%); }
     to { transform: translateY(0%); }
-}
-
-@keyframes twinkle {
-    from { opacity: 0.7; } /* subtle brightness variation */
-    to { opacity: 1; }
 }
 
 /* centered search */
@@ -56,10 +56,12 @@ html, body {
     font-size: 16px;
     background: rgba(255,255,255,0.9);
 }
+
 </style>
 </head>
 
 <body>
+
 <div id="stars"></div>
 
 <div class="center">
@@ -69,43 +71,29 @@ html, body {
 </div>
 
 <script>
-const starContainer = document.getElementById("stars");
-const starCount = 5800;
 
-// mostly violet/purple shades
-const starColors = [
-    "#b99fff", // light violet
-    "#a67fff", // soft purple
-    "#8a5fff", // deeper violet
-    "#7a3fff", // rich purple
-    "#9c7aff", // medium purple
-    "#c1a3ff", // pale violet
-];
+const starContainer = document.getElementById("stars")
+
+/* 2x more stars */
+const starCount = 5800
 
 for (let i = 0; i < starCount; i++) {
-    const star = document.createElement("div");
-    star.className = "star";
 
-    // random position
-    star.style.left = Math.random() * 100 + "%";
-    star.style.top = Math.random() * 200 + "%";
+    const star = document.createElement("div")
+    star.className = "star"
 
-    // random size (1px–3px) — stays constant
-    const size = Math.random() * 2 + 1;
-    star.style.width = size + "px";
-    star.style.height = size + "px";
+    star.style.left = Math.random() * 100 + "%"
+    star.style.top = Math.random() * 200 + "%"
 
-    // pick a mostly purple/violet color
-    const color = starColors[Math.floor(Math.random() * starColors.length)];
-    star.style.background = color;
-    star.style.boxShadow = `0 0 1px ${color}`;
+    const size = Math.random() * 2 + 1
+    star.style.width = size + "px"
+    star.style.height = size + "px"
 
-    // subtle twinkle, only in opacity, not size
-    star.style.animationDuration = (Math.random() * 1.5 + 1) + "s";
-    star.style.animationDelay = Math.random() * 2 + "s";
-
-    starContainer.appendChild(star);
+    starContainer.appendChild(star)
 }
+
 </script>
+
 </body>
 </html>
+```
